@@ -2,29 +2,26 @@ package pageobject_model.page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.FindBys;
 
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class SportmasterNikeMdRunner2Page extends AbstractPage {
 
     private JavascriptExecutor jsExecutor;
-    private Wait<WebDriver> wait;
 
     private static final String HOMEPAGE_URL = "http://www.sportmaster.by/catalogitem/krossovki_mugskie_nike_md_runner_2749794n06010/";
 
     @FindBy(xpath = "//li[@class='cb-item-actions-data-sizes']//li")
     private List<WebElement> sneakersSizes;
 
-    @FindBy(xpath = "//a[text()='В корзину']")
+    @FindBys({@FindBy(tagName = "a"),
+            @FindBy(linkText = "В корзину")})
     private WebElement goToBasketLink;
 
-    @FindBy(xpath = "//div[@class='cb-item-popup']")
+    @FindBys({@FindBy(tagName = "div"),
+            @FindBy(className = "cb-item-popup")})
     private WebElement itemPopupWindow;
 
     private String extractSneakersInfo(String rawSneakersString) {
@@ -36,12 +33,6 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
     public SportmasterNikeMdRunner2Page(WebDriver driver, JavascriptExecutor jsExecutor) {
         super(driver);
         this.jsExecutor = jsExecutor;
-        this.wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(15))
-                .pollingEvery(Duration.ofSeconds(1))
-                .ignoring(NoSuchElementException.class)
-                .ignoring(StaleElementReferenceException.class)
-                .withMessage("Timeout for waiting was exceeded!");
     }
 
     public SportmasterNikeMdRunner2Page openPage() {
