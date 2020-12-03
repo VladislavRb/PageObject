@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageobject_model.page.SportmasterMensHikingHoodiesPage;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ public class FilterItemsListTest {
 
     @Test
     public void filterByBrandTest() {
-        List<String> allManufacturerNames = new SportmasterNikeMdRunner2Page(driver)
+        List<String> allItemTitlesList = new SportmasterMensHikingHoodiesPage(driver)
                 .openPage()
                 .clickOnIcePeakCategoryLink()
-                .readManufacturerNameOfAllHoodiesOnPage();
+                .readAllItemTitlesOnPage();
 
         Assert.assertEquals(actualResults, expectedResults);
     }
