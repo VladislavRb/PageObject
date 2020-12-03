@@ -11,7 +11,7 @@ import pageobject_model.page.SportmasterNikeMdRunner2Page;
 import java.util.Arrays;
 import java.util.List;
 
-public class addItemsToBasketTest {
+public class AddItemsToBasketTest {
 
     private WebDriver driver;
     private JavascriptExecutor jsExecutor;
