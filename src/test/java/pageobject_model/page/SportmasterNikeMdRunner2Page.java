@@ -1,6 +1,7 @@
 package pageobject_model.page;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -17,11 +18,14 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "http://www.sportmaster.by/catalogitem/krossovki_mugskie_nike_md_runner_2749794n06010/";
 
-    private WebElement getWebElementByXpath(Wait<WebDriver> wait, String xpath) {
-        return wait
-                .until(ExpectedConditions
-                        .presenceOfElementLocated(By.xpath(xpath)));
-    }
+    @FindBy(xpath = "//li[@class='cb-item-actions-data-sizes']//li")
+    private List<WebElement> sneakersSizes;
+
+    @FindBy(xpath = "//a[text()='В корзину']")
+    private WebElement goToBasketLink;
+
+    @FindBy(xpath = "//div[@class='cb-item-popup']")
+    private WebElement itemPopupWindow;
 
     private String extractSneakersInfo(String rawSneakersString) {
         int vendorCodeStartIndex = rawSneakersString.indexOf("\n");
@@ -46,10 +50,6 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
     }
 
     public SportmasterNikeMdRunner2Page chooseFirstAvailableSneakersSize() {
-        List<WebElement> sneakersSizes = wait
-                .until(ExpectedConditions
-                        .presenceOfAllElementsLocatedBy(By.xpath("//li[@class='cb-item-actions-data-sizes']//li")));
-
         WebElement firstAvailableSizeInput = sneakersSizes.stream()
                 .filter(webElement -> webElement.findElement(By.tagName("input")).isEnabled())
                 .findFirst()
@@ -63,15 +63,12 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
     }
 
     public SportmasterNikeMdRunner2Page pressOnInBasketButton() {
-        WebElement goToBasketLink = getWebElementByXpath(wait, "//a[text()='В корзину']");
         jsExecutor.executeScript("arguments[0].click()", goToBasketLink);
 
         return this;
     }
 
     public List<String> readPopupWindowTitleAndSneakersOrderingStatus() {
-        WebElement itemPopupWindow = getWebElementByXpath(wait, "//div[@class='cb-item-popup']");
-
         return Arrays.asList(
                 itemPopupWindow.findElement(By.xpath("//p[@class='cb-item-popup-head-heading']")).getAttribute("innerText").trim(),
                 extractSneakersInfo(itemPopupWindow.findElement(By.xpath("//div[@class='cb-item-popup-body-text']")).getAttribute("innerText").trim()),
