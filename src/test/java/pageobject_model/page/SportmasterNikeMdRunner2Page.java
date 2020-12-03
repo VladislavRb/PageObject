@@ -10,9 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class SportmasterNikeMdRunner2Page {
+public class SportmasterNikeMdRunner2Page extends AbstractPage {
 
-    private WebDriver driver;
     private JavascriptExecutor jsExecutor;
     private Wait<WebDriver> wait;
 
@@ -31,7 +30,7 @@ public class SportmasterNikeMdRunner2Page {
     }
 
     public SportmasterNikeMdRunner2Page(WebDriver driver, JavascriptExecutor jsExecutor) {
-        this.driver = driver;
+        super(driver);
         this.jsExecutor = jsExecutor;
         this.wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(15))
