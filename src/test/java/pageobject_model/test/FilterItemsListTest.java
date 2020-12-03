@@ -26,7 +26,7 @@ public class FilterItemsListTest {
                 .clickOnIcePeakCategoryLink()
                 .readAllItemTitlesOnPage();
 
-        Assert.assertEquals(actualResults, expectedResults);
+        Assert.assertTrue(allItemTitlesList.stream().allMatch(itemTitle -> itemTitle.contains("IcePeak")));
     }
 
     @AfterMethod (alwaysRun = true)

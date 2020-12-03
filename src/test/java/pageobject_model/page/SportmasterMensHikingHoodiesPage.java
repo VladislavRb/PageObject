@@ -25,7 +25,7 @@ public class SportmasterMensHikingHoodiesPage extends AbstractPage {
     }
 
     public SportmasterMensHikingHoodiesPage clickOnIcePeakCategoryLink() {
-        IcePeakCategoryLink.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click()", IcePeakCategoryLink);
 
         return this;
     }
