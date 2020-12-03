@@ -10,6 +10,11 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
 
     private JavascriptExecutor jsExecutor;
 
+    private final By locatorForPopupWindowHeader = By.xpath("//p[@class='cb-item-popup-head-heading']");
+    private final By locatorForSneakersName = By.xpath("//div[@class='cb-item-popup-body-text']");
+    private final By locatorForSneakersPrice = By.xpath("//div[@class='cb-item-price-old']");
+    private final By locatorForBasketLink = By.xpath("//a[contains(@class, 'go_to_order_basket')]");
+
     private static final String HOMEPAGE_URL = "http://www.sportmaster.by/catalogitem/krossovki_mugskie_nike_md_runner_2749794n06010/";
 
     @FindBy(xpath = "//li[@class='cb-item-actions-data-sizes']//li")
@@ -58,10 +63,10 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
 
     public List<String> readPopupWindowTitleAndSneakersOrderingStatus() {
         return Arrays.asList(
-                itemPopupWindow.findElement(By.xpath("//p[@class='cb-item-popup-head-heading']")).getAttribute("innerText").trim(),
-                extractSneakersInfo(itemPopupWindow.findElement(By.xpath("//div[@class='cb-item-popup-body-text']")).getAttribute("innerText").trim()),
-                itemPopupWindow.findElement(By.xpath("//div[@class='cb-item-price-old']")).getText(),
-                itemPopupWindow.findElement(By.xpath("//a[contains(@class, 'go_to_order_basket')]")).getAttribute("innerText").trim()
+                itemPopupWindow.findElement(locatorForPopupWindowHeader).getAttribute("innerText").trim(),
+                extractSneakersInfo(itemPopupWindow.findElement(locatorForSneakersName).getAttribute("innerText").trim()),
+                itemPopupWindow.findElement(locatorForSneakersPrice).getText(),
+                itemPopupWindow.findElement(locatorForBasketLink).getAttribute("innerText").trim()
         );
     }
 }
