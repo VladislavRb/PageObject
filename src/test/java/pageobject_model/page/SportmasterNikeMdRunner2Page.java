@@ -2,7 +2,6 @@ package pageobject_model.page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +15,10 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
     @FindBy(xpath = "//li[@class='cb-item-actions-data-sizes']//li")
     private List<WebElement> sneakersSizes;
 
-    @FindBys({@FindBy(tagName = "a"),
-            @FindBy(linkText = "В корзину")})
+    @FindBy(xpath = "//a[text()='В корзину']")
     private WebElement goToBasketLink;
 
-    @FindBys({@FindBy(tagName = "div"),
-            @FindBy(className = "cb-item-popup")})
+    @FindBy(xpath = "//div[@class='cb-item-popup']")
     private WebElement itemPopupWindow;
 
     private String extractSneakersInfo(String rawSneakersString) {
