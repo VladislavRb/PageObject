@@ -18,6 +18,9 @@ public class SportmasterTest {
 
     @BeforeTest (alwaysRun = true)
     public void browserSetup() {
+        String path = System.getProperty("user.dir");
+        System.setProperty("webdriver.chrome.driver", path + "\\src\\main\\resources\\chromedriver.exe");
+
         driver = new ChromeDriver();
         jsExecutor = (JavascriptExecutor) driver;
     }
