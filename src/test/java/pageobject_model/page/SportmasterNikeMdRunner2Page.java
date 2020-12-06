@@ -20,7 +20,7 @@ public class SportmasterNikeMdRunner2Page extends AbstractPage {
     @FindBy(xpath = "//li[@class='cb-item-actions-data-sizes']//li")
     private List<WebElement> sneakersSizes;
 
-    @FindBy(xpath = "//a[text()='В корзину']")
+    @FindBy(xpath = "//a[contains(@class, 'button-red buybutton')]")
     private WebElement goToBasketLink;
 
     @FindBy(xpath = "//div[@class='cb-item-popup']")
